@@ -71,17 +71,12 @@ Route::get('produk',[PraktikumController::class, 'product']);
 Route::get('transaksi',[PraktikumController::class, 'transaction']);
 Route::get('laporan',[PraktikumController::class, 'report']);
 
-Route::get('tampil-produk',[ProdukController::class,'index']);
-Route::get('tambah-produk',[ProdukController::class,'create'])->name('produk.create');
-Route::get('tampil-produk',[ProdukController::class,'store'])->name('produk.store');
-Route::get('/produk/edit/{id}',[ProdukController::class,'edit'])->name('produk.edit');
-Route::get('/produk/edit/{id}',[ProdukController::class,'update'])->name('produk.update');
-Route::post('/produk/delete/{id}',[ProdukController::class,'destroy'])->name('produk.destroy');
+
 
 Route::controller(ProdukController::class)->group(function(){
     Route::get('tampil-produk',[ProdukController::class,'index']);
     Route::get('tambah-produk',[ProdukController::class,'create'])->name('produk.create');
-    Route::get('tampil-produk',[ProdukController::class,'store'])->name('produk.store');
+    Route::post('tampil-produk',[ProdukController::class,'store'])->name('produk.store');
     Route::get('/produk/edit/{id}',[ProdukController::class,'edit'])->name('produk.edit');
     Route::get('/produk/edit/{id}',[ProdukController::class,'update'])->name('produk.update');
     Route::post('/produk/delete/{id}',[ProdukController::class,'destroy'])->name('produk.destroy');

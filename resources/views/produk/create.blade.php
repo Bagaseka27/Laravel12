@@ -9,7 +9,7 @@
             
             <br>
             
-            <form action="" method="POST">
+            <form action="{{route('produk.store')}}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="kode">Kode Produk <span class="text-danger">*</span></label>
