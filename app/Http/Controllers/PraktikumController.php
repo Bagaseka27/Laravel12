@@ -11,12 +11,12 @@ class PraktikumController extends Controller
     }
 
     public function product(){
-        returnview ('layouts.produk');
+        return view ('produk');
     }
     public function transaction(){
-        return view('layouts.transaksi');
+        return view('transaksi');
     }
     public function report(){
-        return view('layouts.laporan');
+        return view('laporan');
     }
 }

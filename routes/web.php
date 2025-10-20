@@ -72,3 +72,5 @@ Route::get('transaksi',[PraktikumController::class, 'transaction']);
 Route::get('laporan',[PraktikumController::class, 'report']);
 
 Route::get('tampil-produk',[ProdukController::class,'index']);
+Route::get('tambah-produk',[ProdukController::class,'create'])->name('produk.create');
+Route::get('tampil-produk',[ProdukController::class,'store'])->name('produk.store');
