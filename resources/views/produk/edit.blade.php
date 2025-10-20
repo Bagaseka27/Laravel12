@@ -5,11 +5,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h4>Input Data</h4>
+            <h4>Edit Data Data</h4>
             
             <br>
             
-            <form action="" method="POST">
+            <form action="{{route('produk.update',$data->id)}}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="kode">Kode Produk <span class="text-danger">*</span></label>
@@ -30,8 +30,8 @@
                 
                 <br>
                 
-                <button type="submit" class="btn btn-primary">Simpan</button>
-                <a href="" class="btn btn-success">Kembali</a>
+                <button type="submit" class="btn btn-primary">Ubah</button>
+                <a href="{{url('tampil-produk')}}" class="btn btn-success">Kembali</a>
             </form>
         </div>
     </div>

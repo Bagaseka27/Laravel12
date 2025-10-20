@@ -26,8 +26,11 @@
                 <td>{{$number_format($data->harga,0, ',','.')}}</td>
                 <td>{{$data->stok}}</td>
                 <td>
-                    <button class="btn btn-warning">Ubah</button>
-                    <button class="btn btn-danger">Hapus</button>
+                    <form action="{{route('produk.delete',$data->id)}}" method="post">@csrf
+                        <a href="{{route('produk.edit',$data->id)}}" class = "btn btn-warning">Edit</a>
+                        <button class = "btn btn-danger">Delete</button>
+
+                    </form>
                 </td>
             </tr>
             @endforeach
