@@ -74,10 +74,10 @@ Route::get('laporan',[PraktikumController::class, 'report']);
 
 
 Route::controller(ProdukController::class)->group(function(){
-    Route::get('tampil-produk',[ProdukController::class,'index']);
-    Route::get('tambah-produk',[ProdukController::class,'create'])->name('produk.create');
-    Route::post('tampil-produk',[ProdukController::class,'store'])->name('produk.store');
-    Route::get('/produk/edit/{id}',[ProdukController::class,'edit'])->name('produk.edit');
-    Route::get('/produk/edit/{id}',[ProdukController::class,'update'])->name('produk.update');
-    Route::post('/produk/delete/{id}',[ProdukController::class,'destroy'])->name('produk.destroy');
+    Route::get('tampil-produk', 'index');
+    Route::get('tambah-produk', 'create')->name('produk.create');
+    Route::post('tampil-produk', 'store')->name('produk.store');
+    Route::get('/produk/edit/{id}', 'edit')->name('produk.edit');
+    Route::post('/produk/edit/{id}', 'update')->name('produk.update');
+    Route::post('/produk/delete/{id}', 'destroy')->name('produk.delete');
 });
