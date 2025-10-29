@@ -81,3 +81,12 @@ Route::controller(ProdukController::class)->group(function(){
     Route::post('/produk/edit/{id}', 'update')->name('produk.update');
     Route::post('/produk/delete/{id}', 'destroy')->name('produk.delete');
 });
+
+Route::controller(KategoriController::class)->group(function(){
+    Route::get('tampil-kategori', 'index');
+    Route::get('tambah-kategori', 'create')->name('kategori.create');
+    Route::post('tampil-kategori', 'store')->name('kategori.store');
+    Route::get('/kategori/edit/{id}', 'edit')->name('kategori.edit');
+    Route::post('/kategori/edit/{id}', 'update')->name('kategori.update');
+    Route::post('/kategori/delete/{id}', 'destroy')->name('kategori.delete');
+});
