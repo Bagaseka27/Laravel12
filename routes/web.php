@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PraktikumController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\KategoriController;
 Route::get('/', function () {
     return view('welcome');
 });
