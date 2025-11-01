@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PraktikumController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -90,4 +91,7 @@ Route::controller(KategoriController::class)->group(function(){
     Route::get('/kategori/edit/{id}', 'edit')->name('kategori.edit');
     Route::post('/kategori/edit/{id}', 'update')->name('kategori.update');
     Route::post('/kategori/delete/{id}', 'destroy')->name('kategori.delete');
+    Route::get('/produk/export/excel',[ProdukController::class, 'excel'])->name('produk.excel');
+    Route::get('/produk/export/pdf',[ProdukController::class, 'pdf'])->name('produk.pdf');
+    Route::get('/produk/chart',[ProdukController::class,'chart'])->name('produk.chart');
 });

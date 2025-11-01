@@ -5,8 +5,11 @@
 <br>
 <div class="container">
     <h2>Tabel Produk</h2>
-    <a href="{{route('produk.create')}}" class="btn btn-success mb-3" > + Tambah Data</a>
-    <table class="table table-bordered table striped" id="tabel-produk">
+    <a href="{{ route('produk.create') }}" class="btn btn-success"> + Tambah Data</a>
+    <a href="{{ route('produk.excel') }}" class="btn btn-primary">Excel</a>
+    <a href="{{ route('produk.pdf') }}" class="btn btn-secondary pull-right" target="_blank">PDF</a>
+    <a href="{{route('produk.chart')}}" class="btn btn-dark">Chart</a>
+    <table class="table table-bordered table-striped" id="tabel-produk">
         <thead>
         <tr>
             <th style="width:1%">No.</th>

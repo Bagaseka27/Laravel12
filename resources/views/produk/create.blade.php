@@ -8,6 +8,15 @@
         <div class="col-md-6">
             <h4>Form Input Data</h4>
             <br>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <form action="{{route('produk.store')}}" method="POST">
                 @csrf
                 <div class="form-group">
@@ -18,6 +27,15 @@
                 <div class="form-group">
                     <label for="nama">Nama Produk <span class="text-danger">*</span></label>
                     <input class="form-control" type="text" name="nama_produk" id="nama_produk">
+                </div>
+
+                <div class="form-group">
+                    <label for="harga">Kategori <span class="text-danger">*</span></label><br>
+                    <select name="ketegori" required>
+                        @foreach($kategori as $category)
+                        <option value="{{ $category->id }}">{{ $category->nama_kategori }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -36,5 +54,4 @@
         </div>
     </div>
 </div>
-
 @endsection
