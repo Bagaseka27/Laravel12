@@ -21,7 +21,7 @@
                 <br>
                 <div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="{{ url('kategori') }}" class="btn btn-success">Kembali</a>
+                    <a href="{{ url('tampil-kategori') }}" class="btn btn-success">Kembali</a>
                 </div>
             </form>
         </div>

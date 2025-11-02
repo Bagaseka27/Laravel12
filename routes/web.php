@@ -93,5 +93,5 @@ Route::controller(KategoriController::class)->group(function(){
     Route::post('/kategori/delete/{id}', 'destroy')->name('kategori.delete');
     Route::get('/produk/export/excel',[ProdukController::class, 'excel'])->name('produk.excel');
     Route::get('/produk/export/pdf',[ProdukController::class, 'pdf'])->name('produk.pdf');
-    Route::get('/produk/chart',[ProdukController::class,'chart'])->name('produk.chart');
+    Route::get('/produk/chart', [ProdukController::class, 'chart'])->name('chart');
 });

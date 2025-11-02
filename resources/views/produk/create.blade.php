@@ -30,8 +30,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="harga">Kategori <span class="text-danger">*</span></label><br>
-                    <select name="ketegori" required>
+                    <label for="nama">Kategori <span class="text-danger">*</span></label><br>
+                    <select name="kategori" required>
                         @foreach($kategori as $category)
                         <option value="{{ $category->id }}">{{ $category->nama_kategori }}</option>
                         @endforeach

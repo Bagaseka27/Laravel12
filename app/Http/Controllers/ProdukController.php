@@ -8,6 +8,7 @@ use App\Models\Kategori;
 use App\Exports\ProdukExport;
 use Maatwebsite\Excel\Facades\Excel;
 
+
 class ProdukController extends Controller
 {
     public function index(){
@@ -27,7 +28,7 @@ class ProdukController extends Controller
             'numeric' => ':attribute harus berupa angka'
         ];
         $validatedData = $request->validate([
-            'id' => 'required|unique:produks,id',
+            'id' => 'required|unique:produk,id',
             'nama_produk' => 'required',
             'kategori' => 'required',
             'harga' => 'required|numeric',
@@ -78,10 +79,14 @@ class ProdukController extends Controller
         return view('produk.pdf', ['dataProduk' => $data]);
     }
 
-    public function chart(){
-        $dataLabel = Produk::orderBy('nama_produk','asc')
-        ->pluck('nama_produk')->toArray();
-        $dataStock = Produk::orderBy('nama_produk','asc')
-        ->pluck('stock')->toArray();
+    public function chart()
+    {
+        $dataLabel = Produk::orderBy('nama_produk', 'asc')
+            ->pluck('nama_produk')->toArray();
+
+        $dataStock = Produk::orderBy('nama_produk', 'asc')
+            ->pluck('stock')->toArray();
+
+        return view('produk.chart', compact('dataLabel', 'dataStock'));
     }
 }

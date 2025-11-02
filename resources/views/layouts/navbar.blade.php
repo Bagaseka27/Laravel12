@@ -7,14 +7,18 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link"href="/profil">Profil</a>
+                <a class="nav-link"href="/profil">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/daftar-mhs">Mahasiswa</a>
+                <a class="nav-link"  href="/tampil-produk">Produk</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link"  href="/produk">Produk</a>
+                <a class="nav-link" href="/transaksi">Transaksi</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="/laporan">Laporan</a>
+            </li>
+            
         </ul>
     </div>
   </div>

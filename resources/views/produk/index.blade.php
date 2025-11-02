@@ -8,7 +8,7 @@
     <a href="{{ route('produk.create') }}" class="btn btn-success"> + Tambah Data</a>
     <a href="{{ route('produk.excel') }}" class="btn btn-primary">Excel</a>
     <a href="{{ route('produk.pdf') }}" class="btn btn-secondary pull-right" target="_blank">PDF</a>
-    <a href="{{route('produk.chart')}}" class="btn btn-dark">Chart</a>
+    <a href="{{route('chart')}}" class="btn btn-dark mb-6" > Chart </a>
     <table class="table table-bordered table-striped" id="tabel-produk">
         <thead>
         <tr>
