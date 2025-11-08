@@ -68,7 +68,7 @@ Route::get('detail-produk/{id}', function($id){
     return view('detailproduk', compact('produk'));
 });
 
-Route::get('home',[PraktikumController::class, 'home']);
+/*Route::get('home',[PraktikumController::class, 'home']);
 Route::get('produk',[PraktikumController::class, 'product']);
 Route::get('transaksi',[PraktikumController::class, 'transaction']);
 Route::get('laporan',[PraktikumController::class, 'report']);
@@ -95,3 +95,40 @@ Route::controller(KategoriController::class)->group(function(){
     Route::get('/produk/export/pdf',[ProdukController::class, 'pdf'])->name('produk.pdf');
     Route::get('/produk/chart', [ProdukController::class, 'chart'])->name('chart');
 });
+*/
+// Route HOME: Bisa diakses oleh Admin dan Kasir (asumsi sudah login 'auth')
+Route::get('home', function () {
+    return view('home');
+})->middleware('auth'); // Tambahkan middleware 'auth' untuk memastikan hanya pengguna yang login yang bisa mengakses
+
+// ---
+
+// Route PRODUK & KATEGORI: Hanya bisa diakses oleh Admin
+Route::middleware(['auth', 'admin'])->group(function () {
+    // --- Routing Produk ---
+    Route::get('/tampil-produk', [ProdukController::class, 'index']);
+    Route::get('/tambah-produk', [ProdukController::class, 'create'])->name('produk.create');
+    Route::post('/tampil-produk', [ProdukController::class, 'store'])->name('produk.store');
+    Route::get('/produk/edit/{id}', [ProdukController::class, 'edit'])->name('produk.edit');
+    Route::post('/produk/edit/{id}', [ProdukController::class, 'update'])->name('produk.update');
+    Route::post('/produk/delete/{id}', [ProdukController::class, 'destroy'])->name('produk.delete');
+
+    // --- Routing Kategori ---
+    Route::get('/tampil-kategori', [KategoriController::class, 'index']);
+    Route::get('/tambah-kategori', [KategoriController::class, 'create'])->name('kategori.create');
+    Route::post('/tampil-kategori', [KategoriController::class, 'store'])->name('kategori.store');
+    Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
+    Route::post('/kategori/edit/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+    Route::post('/kategori/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.delete');
+});
+
+// ---
+
+// Route LAPORAN: Bisa diakses oleh Admin dan Kasir
+// Anda perlu membuat custom middleware, misalnya 'checkRole', yang mengizinkan 'admin' ATAU 'kasir'.
+// Jika Anda menggunakan package seperti Spatie, Anda bisa menggunakan 'role:admin|kasir'.
+Route::get('/laporan', [LaporanController::class, 'index'])->middleware(['auth', 'role:admin,kasir']);
+
+// CATATAN: Middleware 'role:admin,kasir' di atas adalah contoh umum dalam Laravel untuk multiple role.
+// Jika Anda tidak menggunakan package role/permission, Anda perlu membuat Custom Middleware:
+// Route::get('/laporan', [LaporanController::class, 'index'])->middleware(['auth', 'kasirOrAdmin']);
