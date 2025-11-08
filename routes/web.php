@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PraktikumController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaporanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -97,33 +98,38 @@ Route::controller(KategoriController::class)->group(function(){
 });
 */
 
-Route::get('home', function () {
-    return view('home');
-})->middleware('auth'); 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', function () {
+        return view('home');
+    })->name('home');
 
-// ---
-
-
-Route::middleware(['auth', 'admin'])->group(function () {
-
-    Route::get('/tampil-produk', [ProdukController::class, 'index']);
-    Route::get('/tambah-produk', [ProdukController::class, 'create'])->name('produk.create');
-    Route::post('/tampil-produk', [ProdukController::class, 'store'])->name('produk.store');
-    Route::get('/produk/edit/{id}', [ProdukController::class, 'edit'])->name('produk.edit');
-    Route::post('/produk/edit/{id}', [ProdukController::class, 'update'])->name('produk.update');
-    Route::post('/produk/delete/{id}', [ProdukController::class, 'destroy'])->name('produk.delete');
-
-    // --- Routing Kategori ---
-    Route::get('/tampil-kategori', [KategoriController::class, 'index']);
-    Route::get('/tambah-kategori', [KategoriController::class, 'create'])->name('kategori.create');
-    Route::post('/tampil-kategori', [KategoriController::class, 'store'])->name('kategori.store');
-    Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
-    Route::post('/kategori/edit/{id}', [KategoriController::class, 'update'])->name('kategori.update');
-    Route::post('/kategori/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.delete');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 });
 
-// ---
+Route::middleware(['auth', 'admin'])->group(function () {
+//routing produk
+    Route::get('tampil-produk', [ProdukController::class, 'index'])->name('produk.index');
+    Route::get('tambah-produk', [ProdukController::class, 'create'])->name('produk.create');
+    Route::post('/tampil-produk', [ProdukController::class, 'store'])->name('produk.store');
+    Route::get('/produk/edit/{id}', [ProdukController::class, 'edit'])->name('produk.edit');
+    Route::post('/produk/update/{id}', [ProdukController::class, 'update'])->name('produk.update');
+    Route::post('/produk/delete/{id}', [ProdukController::class, 'destroy'])->name('produk.delete');
+
+//routing kategori
+    Route::get('tampil-kategori', [KategoriController::class, 'index'])->name('kategori.index'); 
+    Route::get('tambah-kategori', [KategoriController::class, 'create'])->name('kategori.create');
+    Route::post('tampil-kategori', [KategoriController::class, 'store'])->name('kategori.store');
+    Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
+    Route::post('/kategori/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+    Route::post('/kategori/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.delete');
 
 
-Route::get('/laporan', [LaporanController::class, 'index'])->middleware(['auth', 'role:admin,kasir']);
+    Route::get('/produk/excel', [ProdukController::class, 'excel'])->name('produk.excel');
+    Route::get('/produk/pdf', [ProdukController::class, 'pdf'])->name('produk.pdf');
+    Route::get('/produk/chart', [ProdukController::class, 'chart'])->name('produk.chart');
+});    
 
+
+Route::middleware(['auth', 'kasir'])->group(function () {
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+});
